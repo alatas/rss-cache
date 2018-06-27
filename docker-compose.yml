@@ -1,0 +1,16 @@
+version: "3"
+services:
+  rss-cache:
+    build:
+      context: .
+      args:
+        all_proxy: #set proxy
+    image: alatas/rss-cache
+    environment:
+      - host_name=http://localhost:8000 
+      - feeds="http://feeds.bbci.co.uk/news/rss.xml|bbcnews.xml;http://feeds.bbci.co.uk/news/world/rss.xml|bbcworld.xml"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./www:/www
+    restart: always
